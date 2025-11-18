@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lpra
+  labels:
+    app: nginx
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: lpra
+  template:
+    metadata:
+      labels:
+        app: lpra
+    spec:
+      containers:
+        - name: lpra
+          image: mrsddq/mlapp_predict_rental:latest
+          ports:
+            - containerPort: 80
+      # restartPolicy: Always
